@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.UserRetroactiveMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.UserRetroactive" >
+    <id column="userRetroactiveId" property="userRetroactiveId" jdbcType="INTEGER" />
+    <result column="userClassesChildRecordId" property="userClassesChildRecordId" jdbcType="INTEGER" />
+    <result column="SignInTime" property="signInTime" jdbcType="TIMESTAMP" />
+    <result column="toAndFrom" property="toAndFrom" jdbcType="BIT" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="operationUserId" property="operationUserId" jdbcType="BIGINT" />
+    <result column="SignInWayId" property="signInWayId" jdbcType="INTEGER" />
+    <result column="operatingTime" property="operatingTime" jdbcType="TIMESTAMP" />
+    <result column="checkmanId" property="checkmanId" jdbcType="BIGINT" />
+    <result column="checkTime" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="checkStateId" property="checkStateId" jdbcType="INTEGER" />
+    <result column="applyForReason" property="applyForReason" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userRetroactiveId, userClassesChildRecordId, SignInTime, toAndFrom, userName, operationUserId, 
+    SignInWayId, operatingTime, checkmanId, checkTime, checkStateId, applyForReason, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userretroactive
+    where userRetroactiveId = #{userRetroactiveId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userretroactive
+    where userRetroactiveId = #{userRetroactiveId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.UserRetroactive" >
+    insert into userretroactive (userRetroactiveId, userClassesChildRecordId, 
+      SignInTime, toAndFrom, userName, 
+      operationUserId, SignInWayId, operatingTime, 
+      checkmanId, checkTime, checkStateId, 
+      applyForReason, remark)
+    values (#{userRetroactiveId,jdbcType=INTEGER}, #{userClassesChildRecordId,jdbcType=INTEGER}, 
+      #{signInTime,jdbcType=TIMESTAMP}, #{toAndFrom,jdbcType=BIT}, #{userName,jdbcType=VARCHAR}, 
+      #{operationUserId,jdbcType=BIGINT}, #{signInWayId,jdbcType=INTEGER}, #{operatingTime,jdbcType=TIMESTAMP}, 
+      #{checkmanId,jdbcType=BIGINT}, #{checkTime,jdbcType=TIMESTAMP}, #{checkStateId,jdbcType=INTEGER}, 
+      #{applyForReason,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.UserRetroactive" >
+    insert into userretroactive
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userRetroactiveId != null" >
+        userRetroactiveId,
+      </if>
+      <if test="userClassesChildRecordId != null" >
+        userClassesChildRecordId,
+      </if>
+      <if test="signInTime != null" >
+        SignInTime,
+      </if>
+      <if test="toAndFrom != null" >
+        toAndFrom,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="operationUserId != null" >
+        operationUserId,
+      </if>
+      <if test="signInWayId != null" >
+        SignInWayId,
+      </if>
+      <if test="operatingTime != null" >
+        operatingTime,
+      </if>
+      <if test="checkmanId != null" >
+        checkmanId,
+      </if>
+      <if test="checkTime != null" >
+        checkTime,
+      </if>
+      <if test="checkStateId != null" >
+        checkStateId,
+      </if>
+      <if test="applyForReason != null" >
+        applyForReason,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userRetroactiveId != null" >
+        #{userRetroactiveId,jdbcType=INTEGER},
+      </if>
+      <if test="userClassesChildRecordId != null" >
+        #{userClassesChildRecordId,jdbcType=INTEGER},
+      </if>
+      <if test="signInTime != null" >
+        #{signInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toAndFrom != null" >
+        #{toAndFrom,jdbcType=BIT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="signInWayId != null" >
+        #{signInWayId,jdbcType=INTEGER},
+      </if>
+      <if test="operatingTime != null" >
+        #{operatingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkmanId != null" >
+        #{checkmanId,jdbcType=BIGINT},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStateId != null" >
+        #{checkStateId,jdbcType=INTEGER},
+      </if>
+      <if test="applyForReason != null" >
+        #{applyForReason,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.UserRetroactive" >
+    update userretroactive
+    <set >
+      <if test="userClassesChildRecordId != null" >
+        userClassesChildRecordId = #{userClassesChildRecordId,jdbcType=INTEGER},
+      </if>
+      <if test="signInTime != null" >
+        SignInTime = #{signInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toAndFrom != null" >
+        toAndFrom = #{toAndFrom,jdbcType=BIT},
+      </if>
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationUserId != null" >
+        operationUserId = #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="signInWayId != null" >
+        SignInWayId = #{signInWayId,jdbcType=INTEGER},
+      </if>
+      <if test="operatingTime != null" >
+        operatingTime = #{operatingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkmanId != null" >
+        checkmanId = #{checkmanId,jdbcType=BIGINT},
+      </if>
+      <if test="checkTime != null" >
+        checkTime = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkStateId != null" >
+        checkStateId = #{checkStateId,jdbcType=INTEGER},
+      </if>
+      <if test="applyForReason != null" >
+        applyForReason = #{applyForReason,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userRetroactiveId = #{userRetroactiveId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.UserRetroactive" >
+    update userretroactive
+    set userClassesChildRecordId = #{userClassesChildRecordId,jdbcType=INTEGER},
+      SignInTime = #{signInTime,jdbcType=TIMESTAMP},
+      toAndFrom = #{toAndFrom,jdbcType=BIT},
+      userName = #{userName,jdbcType=VARCHAR},
+      operationUserId = #{operationUserId,jdbcType=BIGINT},
+      SignInWayId = #{signInWayId,jdbcType=INTEGER},
+      operatingTime = #{operatingTime,jdbcType=TIMESTAMP},
+      checkmanId = #{checkmanId,jdbcType=BIGINT},
+      checkTime = #{checkTime,jdbcType=TIMESTAMP},
+      checkStateId = #{checkStateId,jdbcType=INTEGER},
+      applyForReason = #{applyForReason,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where userRetroactiveId = #{userRetroactiveId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectByName" resultMap="BaseResultMap">
+  	SELECT * FROM userretroactive
+  	<where>
+  		
+  		<if test="name!=null and name!=''">
+  			AND userName like "%"#{name}"%"
+  		</if>
+  	</where>
+  
+  </select>
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountByCondition" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM userretroactive
+  	<where>
+  		<if test="startDate !='' and endDate!=''">
+			and operatingTime between #{startDate}
+			and #{endDate}
+		</if>
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectRetroactiveByCondition" resultMap="BaseResultMap">
+  	SELECT * FROM userretroactive  
+  	<where>
+  		<if test="startDate !='' and endDate!=''">
+			and operatingTime between #{startDate}
+			and #{endDate}
+		</if>
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectMyCountByCondition" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM userretroactive 
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and operatingTime between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+       and  operationUserId = #{uid,jdbcType=BIGINT}
+       
+        </if>
+
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectMyRetroactiveByCondition" resultMap="BaseResultMap">
+  	SELECT * FROM userretroactive  
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and operatingTime between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+        AND  operationUserId = #{uid,jdbcType=BIGINT}
+        </if>
+		
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.CmsUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.CmsUserRole" >
+    <id column="UR_id" property="urId" jdbcType="BIGINT" />
+    <result column="R_Id" property="rId" jdbcType="BIGINT" />
+    <result column="U_id" property="uId" jdbcType="BIGINT" />
+    <result column="UR_author" property="urAuthor" jdbcType="VARCHAR" />
+    <result column="UR_isdelete" property="urIsdelete" jdbcType="INTEGER" />
+    <result column="UR_createDate" property="urCreatedate" jdbcType="DATE" />
+    <result column="UR_modifyDate" property="urModifydate" jdbcType="DATE" />
+    <result column="UR_versions" property="urVersions" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UR_id, R_Id, U_id, UR_author, UR_isdelete, UR_createDate, UR_modifyDate, UR_versions
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_user_role
+    where UR_id = #{urId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cms_user_role
+    where UR_id = #{urId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.CmsUserRole" >
+    insert into cms_user_role (UR_id, R_Id, U_id, 
+      UR_author, UR_isdelete, UR_createDate, 
+      UR_modifyDate, UR_versions)
+    values (#{urId,jdbcType=BIGINT}, #{rId,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, 
+      #{urAuthor,jdbcType=VARCHAR}, #{urIsdelete,jdbcType=INTEGER}, #{urCreatedate,jdbcType=DATE}, 
+      #{urModifydate,jdbcType=DATE}, #{urVersions,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.CmsUserRole" >
+    insert into cms_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="urId != null" >
+        UR_id,
+      </if>
+      <if test="rId != null" >
+        R_Id,
+      </if>
+      <if test="uId != null" >
+        U_id,
+      </if>
+      <if test="urAuthor != null" >
+        UR_author,
+      </if>
+      <if test="urIsdelete != null" >
+        UR_isdelete,
+      </if>
+      <if test="urCreatedate != null" >
+        UR_createDate,
+      </if>
+      <if test="urModifydate != null" >
+        UR_modifyDate,
+      </if>
+      <if test="urVersions != null" >
+        UR_versions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="urId != null" >
+        #{urId,jdbcType=BIGINT},
+      </if>
+      <if test="rId != null" >
+        #{rId,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="urAuthor != null" >
+        #{urAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="urIsdelete != null" >
+        #{urIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="urCreatedate != null" >
+        #{urCreatedate,jdbcType=DATE},
+      </if>
+      <if test="urModifydate != null" >
+        #{urModifydate,jdbcType=DATE},
+      </if>
+      <if test="urVersions != null" >
+        #{urVersions,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.CmsUserRole" >
+    update cms_user_role
+    <set >
+      <if test="rId != null" >
+        R_Id = #{rId,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null" >
+        U_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="urAuthor != null" >
+        UR_author = #{urAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="urIsdelete != null" >
+        UR_isdelete = #{urIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="urCreatedate != null" >
+        UR_createDate = #{urCreatedate,jdbcType=DATE},
+      </if>
+      <if test="urModifydate != null" >
+        UR_modifyDate = #{urModifydate,jdbcType=DATE},
+      </if>
+      <if test="urVersions != null" >
+        UR_versions = #{urVersions,jdbcType=BIGINT},
+      </if>
+    </set>
+    where UR_id = #{urId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.CmsUserRole" >
+    update cms_user_role
+    set R_Id = #{rId,jdbcType=BIGINT},
+      U_id = #{uId,jdbcType=BIGINT},
+      UR_author = #{urAuthor,jdbcType=VARCHAR},
+      UR_isdelete = #{urIsdelete,jdbcType=INTEGER},
+      UR_createDate = #{urCreatedate,jdbcType=DATE},
+      UR_modifyDate = #{urModifydate,jdbcType=DATE},
+      UR_versions = #{urVersions,jdbcType=BIGINT}
+    where UR_id = #{urId,jdbcType=BIGINT}
+  </update>
+</mapper>

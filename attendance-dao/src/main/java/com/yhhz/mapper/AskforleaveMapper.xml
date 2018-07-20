@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.AskforleaveMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.Askforleave" >
+    <id column="askForLeaveId" property="askForLeaveId" jdbcType="INTEGER" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="startDate" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="endDate" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="operationUserId" property="operationUserId" jdbcType="BIGINT" />
+    <result column="operatingTime" property="operatingTime" jdbcType="TIMESTAMP" />
+    <result column="checkTime" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="checkType" property="checkType" jdbcType="INTEGER" />
+    <result column="writeBack" property="writeBack" jdbcType="VARCHAR" />
+    <result column="workNo" property="workNo" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    askForLeaveId, userName, startDate, endDate, operationUserId, operatingTime, checkTime, 
+    remark, checkType, writeBack, workNo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from askforleave
+    where askForLeaveId = #{askForLeaveId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from askforleave
+    where askForLeaveId = #{askForLeaveId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.Askforleave" >
+    insert into askforleave (askForLeaveId, userName, startDate, 
+      endDate, operationUserId, operatingTime, 
+      checkTime, remark, checkType, 
+      writeBack, workNo)
+    values (#{askForLeaveId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{operationUserId,jdbcType=BIGINT}, #{operatingTime,jdbcType=TIMESTAMP}, 
+      #{checkTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{checkType,jdbcType=INTEGER}, 
+      #{writeBack,jdbcType=VARCHAR}, #{workNo,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.Askforleave" >
+    insert into askforleave
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="askForLeaveId != null" >
+        askForLeaveId,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="startDate != null" >
+        startDate,
+      </if>
+      <if test="endDate != null" >
+        endDate,
+      </if>
+      <if test="operationUserId != null" >
+        operationUserId,
+      </if>
+      <if test="operatingTime != null" >
+        operatingTime,
+      </if>
+      <if test="checkTime != null" >
+        checkTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="checkType != null" >
+        checkType,
+      </if>
+      <if test="writeBack != null" >
+        writeBack,
+      </if>
+      <if test="workNo != null" >
+        workNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="askForLeaveId != null" >
+        #{askForLeaveId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operatingTime != null" >
+        #{operatingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="checkType != null" >
+        #{checkType,jdbcType=INTEGER},
+      </if>
+      <if test="writeBack != null" >
+        #{writeBack,jdbcType=VARCHAR},
+      </if>
+      <if test="workNo != null" >
+        #{workNo,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.Askforleave" >
+    update askforleave
+    <set >
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        startDate = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        endDate = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationUserId != null" >
+        operationUserId = #{operationUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operatingTime != null" >
+        operatingTime = #{operatingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkTime != null" >
+        checkTime = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="checkType != null" >
+        checkType = #{checkType,jdbcType=INTEGER},
+      </if>
+      <if test="writeBack != null" >
+        writeBack = #{writeBack,jdbcType=VARCHAR},
+      </if>
+      <if test="workNo != null" >
+        workNo = #{workNo,jdbcType=TINYINT},
+      </if>
+    </set>
+    where askForLeaveId = #{askForLeaveId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.Askforleave" >
+    update askforleave
+    set userName = #{userName,jdbcType=VARCHAR},
+      startDate = #{startDate,jdbcType=TIMESTAMP},
+      endDate = #{endDate,jdbcType=TIMESTAMP},
+      operationUserId = #{operationUserId,jdbcType=BIGINT},
+      operatingTime = #{operatingTime,jdbcType=TIMESTAMP},
+      checkTime = #{checkTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      checkType = #{checkType,jdbcType=INTEGER},
+      writeBack = #{writeBack,jdbcType=VARCHAR},
+      workNo = #{workNo,jdbcType=TINYINT}
+    where askForLeaveId = #{askForLeaveId,jdbcType=INTEGER}
+  </update>
+  
+  
+   
+  <select id="selectByName" resultMap="BaseResultMap">
+  	SELECT * FROM askforleave
+  	<where>
+  		
+  		<if test="name!=null and name!=''">
+  			AND userName like "%"#{name}"%"
+  		</if>
+  	</where>
+  
+  </select>
+  
+  
+  
+  
+  <!-- 根据日期查询 列表-->
+  
+  <select id="selectAskforleaveByDate" resultMap="BaseResultMap">
+  	SELECT * FROM askforleave
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and startDate between #{startDate}
+			and #{endDate}
+		</if>
+	
+  	</where>
+  		
+  </select>
+  
+  
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountByCondition" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM askforleave
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and startDate between #{startDate}
+			and #{endDate}
+		</if>
+
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectAskforleaveByCondition" resultMap="BaseResultMap">
+  	SELECT * FROM askforleave  
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and startDate between #{startDate}
+			and #{endDate}
+		</if>
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountByAskforleave" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM askforleave
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and startDate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+       and  operationUserId = #{uid,jdbcType=BIGINT}
+       
+        </if>
+
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectMyAskforleaveByCondition" resultMap="BaseResultMap">
+  	SELECT * FROM askforleave  
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and startDate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+        AND  operationUserId = #{uid,jdbcType=BIGINT}
+        </if>
+		
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  
+  
+  
+  
+</mapper>

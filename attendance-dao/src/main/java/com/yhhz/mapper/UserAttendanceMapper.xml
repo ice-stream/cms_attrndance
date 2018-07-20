@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.UserAttendanceMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.UserAttendance" >
+    <id column="attendanceId" property="attendanceId" jdbcType="INTEGER" />
+    <result column="userId" property="userId" jdbcType="BIGINT" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="attendancedate" property="attendancedate" jdbcType="DATE" />
+    <result column="siginTime" property="siginTime" jdbcType="TIMESTAMP" />
+    <result column="siginBackTime" property="siginBackTime" jdbcType="TIMESTAMP" />
+    <result column="isLate" property="isLate" jdbcType="INTEGER" />
+    <result column="isLeaveEarly" property="isLeaveEarly" jdbcType="INTEGER" />
+    <result column="isVacation" property="isVacation" jdbcType="INTEGER" />
+    <result column="addnessInfo" property="addnessInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    attendanceId, userId, userName, attendancedate, siginTime, siginBackTime, isLate, 
+    isLeaveEarly, isVacation, addnessInfo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from userattendance
+    where attendanceId = #{attendanceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userattendance
+    where attendanceId = #{attendanceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.UserAttendance" >
+    insert into userattendance (attendanceId, userId, userName, 
+      attendancedate, siginTime, siginBackTime, 
+      isLate, isLeaveEarly, isVacation, 
+      addnessInfo)
+    values (#{attendanceId,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{attendancedate,jdbcType=DATE}, #{siginTime,jdbcType=TIMESTAMP}, #{siginBackTime,jdbcType=TIMESTAMP}, 
+      #{isLate,jdbcType=INTEGER}, #{isLeaveEarly,jdbcType=INTEGER}, #{isVacation,jdbcType=INTEGER}, 
+      #{addnessInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.UserAttendance" >
+    insert into userattendance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attendanceId != null" >
+        attendanceId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="attendancedate != null" >
+        attendancedate,
+      </if>
+      <if test="siginTime != null" >
+        siginTime,
+      </if>
+      <if test="siginBackTime != null" >
+        siginBackTime,
+      </if>
+      <if test="isLate != null" >
+        isLate,
+      </if>
+      <if test="isLeaveEarly != null" >
+        isLeaveEarly,
+      </if>
+      <if test="isVacation != null" >
+        isVacation,
+      </if>
+      <if test="addnessInfo != null" >
+        addnessInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attendanceId != null" >
+        #{attendanceId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="attendancedate != null" >
+        #{attendancedate,jdbcType=DATE},
+      </if>
+      <if test="siginTime != null" >
+        #{siginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="siginBackTime != null" >
+        #{siginBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLate != null" >
+        #{isLate,jdbcType=INTEGER},
+      </if>
+      <if test="isLeaveEarly != null" >
+        #{isLeaveEarly,jdbcType=INTEGER},
+      </if>
+      <if test="isVacation != null" >
+        #{isVacation,jdbcType=INTEGER},
+      </if>
+      <if test="addnessInfo != null" >
+        #{addnessInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.UserAttendance" >
+    update userattendance
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="attendancedate != null" >
+        attendancedate = #{attendancedate,jdbcType=DATE},
+      </if>
+      <if test="siginTime != null" >
+        siginTime = #{siginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="siginBackTime != null" >
+        siginBackTime = #{siginBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLate != null" >
+        isLate = #{isLate,jdbcType=INTEGER},
+      </if>
+      <if test="isLeaveEarly != null" >
+        isLeaveEarly = #{isLeaveEarly,jdbcType=INTEGER},
+      </if>
+      <if test="isVacation != null" >
+        isVacation = #{isVacation,jdbcType=INTEGER},
+      </if>
+      <if test="addnessInfo != null" >
+        addnessInfo = #{addnessInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where attendanceId = #{attendanceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.UserAttendance" >
+    update userattendance
+    set userId = #{userId,jdbcType=BIGINT},
+      userName = #{userName,jdbcType=VARCHAR},
+      attendancedate = #{attendancedate,jdbcType=DATE},
+      siginTime = #{siginTime,jdbcType=TIMESTAMP},
+      siginBackTime = #{siginBackTime,jdbcType=TIMESTAMP},
+      isLate = #{isLate,jdbcType=INTEGER},
+      isLeaveEarly = #{isLeaveEarly,jdbcType=INTEGER},
+      isVacation = #{isVacation,jdbcType=INTEGER},
+      addnessInfo = #{addnessInfo,jdbcType=VARCHAR}
+    where attendanceId = #{attendanceId,jdbcType=INTEGER}
+  </update>
+  
+    
+  <select id="selectByName" resultMap="BaseResultMap">
+  	SELECT * FROM userattendance
+  	<where>
+  		
+  		<if test="name!=null and name!=''">
+  			AND userName like "%"#{name}"%"
+  		</if>
+  	</where>
+  
+  </select>
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountByCondition" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM userattendance
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and attendancedate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="name!=null and name!=''">
+  			AND userName like "%"#{name}"%"
+  		</if>
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectAttendanceByCondition" resultMap="BaseResultMap">
+  	SELECT * FROM userattendance 
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and attendancedate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="name!=null and name!=''">
+  			AND userName like "%"#{name}"%"
+  		</if>
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountAttendance" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM userattendance
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and attendanceDate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+       AND  userId = #{uid,jdbcType=BIGINT}
+        </if>
+		
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectAttendanceById" resultMap="BaseResultMap">
+  	SELECT * FROM userattendance 
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and attendanceDate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+        AND  userId = #{uid,jdbcType=BIGINT}
+        </if>
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  <!-- 根据id查询 -->
+    <select id="selectAttendanceByUserId" resultMap="BaseResultMap">
+  	SELECT * FROM userattendance 
+  	<where>
+		<if test="uid != null" >
+        AND  userId = #{uid,jdbcType=BIGINT}
+        </if>
+  	</where>
+  	
+  	
+  	
+  	
+  </select>
+  
+  
+  
+  
+</mapper>

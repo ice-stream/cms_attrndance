@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.AttendanceCount">
+
+
+<!--查询员工出差请假统计的时间-->
+
+<select id="selectAttendanceCount" resultType="com.yhhz.vo.AttendanceCountVo">
+<!--  
+CREATE TEMPORARY TABLE IF NOT EXISTS tmp_table(
+		 attendanceCountId Int,
+          userName varchar(20),
+		 askforLeaveCount Int,
+		 overTimeCount Int,
+		 travelCount  Int,
+		 attendanceCount Int
+		)
+		; 
+		
+	INSERT INTO tmp_table(attendanceCountId,
+     userName,
+		 askforLeaveCount,
+		  overTimeCount,
+		  travelCount,
+		  attendanceCount
+		 )	
+      SELECT attendanceId,userattendance.userName,UNIX_TIMESTAMP(askforleave.endDate)-UNIX_TIMESTAMP(askforleave.startDate), 
+      UNIX_TIMESTAMP(overtime.endDate)-UNIX_TIMESTAMP(overtime.startDate),UNIX_TIMESTAMP(travel.endDate)-UNIX_TIMESTAMP(travel.startDate),
+       UNIX_TIMESTAMP(userattendance.siginBackTime)-UNIX_TIMESTAMP(userattendance.siginTime)
+       FROM  userattendance inner JOIN askforleave on userattendance.userName= askforleave.userName inner JOIN  overtime ON askforleave.userName=overtime.userName inner JOIN  travel on overtime.userName=travel.userName;
+
+
+  SELECT * from  tmp_table  where userName=#{name,jdbcType=VARCHAR};
+
+		
+     DROP TABLE IF EXISTS tmp_table;
+     -->
+     
+          SELECT attendanceId  as attendanceCountId,userattendance.userName as  userName, userattendance.userId as  userId,
+ attendancedate,sum(UNIX_TIMESTAMP(askforleave.endDate)-UNIX_TIMESTAMP(askforleave.startDate)) as askforLeaveCount, 
+      sum(UNIX_TIMESTAMP(overtime.endDate)-UNIX_TIMESTAMP(overtime.startDate)) as overTimeCount,sum(UNIX_TIMESTAMP(travel.endDate)-UNIX_TIMESTAMP(travel.startDate)) as travelCount,
+      sum( UNIX_TIMESTAMP(userattendance.siginBackTime)-UNIX_TIMESTAMP(userattendance.siginTime) )as attendanceCount,count(isLate) as lateCount,count(isLeaveEarly) as leaveEarlyCount,count(isVacation)
+      as vacationCount FROM  userattendance inner JOIN askforleave on userattendance.userId= askforleave.operationUserId 
+inner JOIN  overtime ON askforleave.operationUserId=overtime.operationUserId
+inner JOIN  travel on overtime.operationUserId=travel.operationUserId
+  <where> 
+          <if test="startDate !='' and endDate!=''">
+			and attendancedate between #{startDate}
+			and #{endDate}
+		</if>
+  
+  
+       <if test="uid != null" >
+       and  userId = #{uid,jdbcType=BIGINT}
+        </if>
+        
+        
+  	</where>
+
+     
+     
+     
+
+    </select>
+    
+    <select id="slectAttendanceInfo" resultType="com.yhhz.vo.AttendanceInfo">
+
+<!--  
+
+         CREATE TEMPORARY TABLE IF NOT EXISTS tmp_table1(
+		 AttendanceInfoId Int,
+          userName varchar(20),
+		 isLate Int,
+		 isLeaveEarly Int,
+		 isVacation  Int
+	
+		)
+		; 
+		
+	INSERT INTO tmp_table1(AttendanceInfoId,
+       userName,
+		 isLate,
+		  isLeaveEarly,
+		 isVacation 
+		 )	
+      SELECT attendanceId,userName,isLate,isLeaveEarly,isVacation
+       FROM  userattendance ;
+
+
+  SELECT * from  tmp_table1  where userName=#{name,jdbcType=VARCHAR};
+
+		
+     DROP TABLE IF EXISTS tmp_table1;
+
+-->
+
+SELECT attendanceId as AttendanceInfoId ,userName,isLate,isLeaveEarly,isVacation
+       FROM  userattendance  where userName=#{name,jdbcType=VARCHAR};
+
+    </select>
+    
+    
+    
+      <select id="slectAttendanceVar" resultType="com.yhhz.vo.AttendanceVar">
+      SELECT attendanceId  as attendanceVarId,userattendance.userName as  userName, userattendance.userId as  userId,
+ attendancedate,askforleave.startDate as askforStartDate,askforleave.endDate as askforEndDate,overtime.startDate as overTimeStartDate,
+overtime.endDate as overTimeEndDate,travel.startDate as travelStartDate, travel.endDate as travelEndDate,userattendance.siginBackTime as siginTime,
+userattendance.siginBackTime as siginBackTime,isLate,isLeaveEarly,isVacation   
+ FROM  userattendance inner JOIN askforleave on userattendance.userId= askforleave.operationUserId 
+inner JOIN  overtime ON askforleave.operationUserId=overtime.operationUserId
+inner JOIN  travel on overtime.operationUserId=travel.operationUserId
+  <where> 
+          <if test="startDate !='' and endDate!=''">
+			and attendancedate between #{startDate}
+			and #{endDate}
+		</if>
+  
+  
+       <if test="uid != null" >
+       and  userId = #{uid,jdbcType=BIGINT}
+        </if>
+        
+        
+  	</where>
+
+
+
+    </select>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.LineMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.Line" >
+    <id column="lineId" property="lineId" jdbcType="INTEGER" />
+    <result column="userId" property="userId" jdbcType="BIGINT" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="startPlace" property="startPlace" jdbcType="VARCHAR" />
+    <result column="endPlace" property="endPlace" jdbcType="VARCHAR" />
+    <result column="lineDate" property="lineDate" jdbcType="DATE" />
+    <result column="way" property="way" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    lineId, userId, userName, startPlace, endPlace, lineDate, way
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from line
+    where lineId = #{lineId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from line
+    where lineId = #{lineId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.Line" >
+    insert into line (lineId, userId, userName, 
+      startPlace, endPlace, lineDate, 
+      way)
+    values (#{lineId,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{startPlace,jdbcType=VARCHAR}, #{endPlace,jdbcType=VARCHAR}, #{lineDate,jdbcType=DATE}, 
+      #{way,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.Line" >
+    insert into line
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lineId != null" >
+        lineId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="startPlace != null" >
+        startPlace,
+      </if>
+      <if test="endPlace != null" >
+        endPlace,
+      </if>
+      <if test="lineDate != null" >
+        lineDate,
+      </if>
+      <if test="way != null" >
+        way,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lineId != null" >
+        #{lineId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="startPlace != null" >
+        #{startPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="endPlace != null" >
+        #{endPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="lineDate != null" >
+        #{lineDate,jdbcType=DATE},
+      </if>
+      <if test="way != null" >
+        #{way,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.Line" >
+    update line
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="startPlace != null" >
+        startPlace = #{startPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="endPlace != null" >
+        endPlace = #{endPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="lineDate != null" >
+        lineDate = #{lineDate,jdbcType=DATE},
+      </if>
+      <if test="way != null" >
+        way = #{way,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lineId = #{lineId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.Line" >
+    update line
+    set userId = #{userId,jdbcType=BIGINT},
+      userName = #{userName,jdbcType=VARCHAR},
+      startPlace = #{startPlace,jdbcType=VARCHAR},
+      endPlace = #{endPlace,jdbcType=VARCHAR},
+      lineDate = #{lineDate,jdbcType=DATE},
+      way = #{way,jdbcType=VARCHAR}
+    where lineId = #{lineId,jdbcType=INTEGER}
+  </update>
+  
+  
+<select id="selectByName" resultMap="BaseResultMap">
+  	SELECT * FROM line
+  	<where>
+  		
+  		<if test="name!=null and name!=''">
+  			AND userName like "%"#{name}"%"
+  		</if>
+  	</where>
+  
+  </select>
+  
+ <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountByCondition" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM line
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and lineDate between #{startDate}
+			and #{endDate}
+		</if>
+	
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectLineByCondition" resultMap="BaseResultMap">
+  	SELECT * FROM line  
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and lineDate between #{startDate}
+			and #{endDate}
+		</if>
+	
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  
+ 
+ 
+ 
+  
+  
+</mapper>

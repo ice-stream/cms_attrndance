@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.ClassPeriodMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.ClassPeriod" >
+    <id column="classPeriodId" property="classPeriodId" jdbcType="INTEGER" />
+    <result column="userId" property="userId" jdbcType="BIGINT" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="className" property="className" jdbcType="VARCHAR" />
+    <result column="goToWorkTime" property="goToWorkTime" jdbcType="TIME" />
+    <result column="timeFromWork" property="timeFromWork" jdbcType="TIME" />
+    <result column="startChargeTime" property="startChargeTime" jdbcType="TIME" />
+    <result column="endChargeTime" property="endChargeTime" jdbcType="TIME" />
+    <result column="goToWorkChargeNo" property="goToWorkChargeNo" jdbcType="BIT" />
+    <result column="timeFromWorkChargeNo" property="timeFromWorkChargeNo" jdbcType="BIT" />
+    <result column="calculateLeftEarlyNo" property="calculateLeftEarlyNo" jdbcType="BIT" />
+    <result column="classDate" property="classDate" jdbcType="DATE" />
+    <result column="calculateAbsenceNo" property="calculateAbsenceNo" jdbcType="BIT" />
+    <result column="deleteNo" property="deleteNo" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    classPeriodId, userId, userName, className, goToWorkTime, timeFromWork, startChargeTime, 
+    endChargeTime, goToWorkChargeNo, timeFromWorkChargeNo, calculateLeftEarlyNo, classDate, 
+    calculateAbsenceNo, deleteNo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classperiod
+    where classPeriodId = #{classPeriodId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classperiod
+    where classPeriodId = #{classPeriodId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.ClassPeriod" >
+    insert into classperiod (classPeriodId, userId, userName, 
+      className, goToWorkTime, timeFromWork, 
+      startChargeTime, endChargeTime, goToWorkChargeNo, 
+      timeFromWorkChargeNo, calculateLeftEarlyNo, classDate, 
+      calculateAbsenceNo, deleteNo)
+    values (#{classPeriodId,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{className,jdbcType=VARCHAR}, #{goToWorkTime,jdbcType=TIME}, #{timeFromWork,jdbcType=TIME}, 
+      #{startChargeTime,jdbcType=TIME}, #{endChargeTime,jdbcType=TIME}, #{goToWorkChargeNo,jdbcType=BIT}, 
+      #{timeFromWorkChargeNo,jdbcType=BIT}, #{calculateLeftEarlyNo,jdbcType=BIT}, #{classDate,jdbcType=DATE}, 
+      #{calculateAbsenceNo,jdbcType=BIT}, #{deleteNo,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.ClassPeriod" >
+    insert into classperiod
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classPeriodId != null" >
+        classPeriodId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="className != null" >
+        className,
+      </if>
+      <if test="goToWorkTime != null" >
+        goToWorkTime,
+      </if>
+      <if test="timeFromWork != null" >
+        timeFromWork,
+      </if>
+      <if test="startChargeTime != null" >
+        startChargeTime,
+      </if>
+      <if test="endChargeTime != null" >
+        endChargeTime,
+      </if>
+      <if test="goToWorkChargeNo != null" >
+        goToWorkChargeNo,
+      </if>
+      <if test="timeFromWorkChargeNo != null" >
+        timeFromWorkChargeNo,
+      </if>
+      <if test="calculateLeftEarlyNo != null" >
+        calculateLeftEarlyNo,
+      </if>
+      <if test="classDate != null" >
+        classDate,
+      </if>
+      <if test="calculateAbsenceNo != null" >
+        calculateAbsenceNo,
+      </if>
+      <if test="deleteNo != null" >
+        deleteNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classPeriodId != null" >
+        #{classPeriodId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="goToWorkTime != null" >
+        #{goToWorkTime,jdbcType=TIME},
+      </if>
+      <if test="timeFromWork != null" >
+        #{timeFromWork,jdbcType=TIME},
+      </if>
+      <if test="startChargeTime != null" >
+        #{startChargeTime,jdbcType=TIME},
+      </if>
+      <if test="endChargeTime != null" >
+        #{endChargeTime,jdbcType=TIME},
+      </if>
+      <if test="goToWorkChargeNo != null" >
+        #{goToWorkChargeNo,jdbcType=BIT},
+      </if>
+      <if test="timeFromWorkChargeNo != null" >
+        #{timeFromWorkChargeNo,jdbcType=BIT},
+      </if>
+      <if test="calculateLeftEarlyNo != null" >
+        #{calculateLeftEarlyNo,jdbcType=BIT},
+      </if>
+      <if test="classDate != null" >
+        #{classDate,jdbcType=DATE},
+      </if>
+      <if test="calculateAbsenceNo != null" >
+        #{calculateAbsenceNo,jdbcType=BIT},
+      </if>
+      <if test="deleteNo != null" >
+        #{deleteNo,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.ClassPeriod" >
+    update classperiod
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        className = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="goToWorkTime != null" >
+        goToWorkTime = #{goToWorkTime,jdbcType=TIME},
+      </if>
+      <if test="timeFromWork != null" >
+        timeFromWork = #{timeFromWork,jdbcType=TIME},
+      </if>
+      <if test="startChargeTime != null" >
+        startChargeTime = #{startChargeTime,jdbcType=TIME},
+      </if>
+      <if test="endChargeTime != null" >
+        endChargeTime = #{endChargeTime,jdbcType=TIME},
+      </if>
+      <if test="goToWorkChargeNo != null" >
+        goToWorkChargeNo = #{goToWorkChargeNo,jdbcType=BIT},
+      </if>
+      <if test="timeFromWorkChargeNo != null" >
+        timeFromWorkChargeNo = #{timeFromWorkChargeNo,jdbcType=BIT},
+      </if>
+      <if test="calculateLeftEarlyNo != null" >
+        calculateLeftEarlyNo = #{calculateLeftEarlyNo,jdbcType=BIT},
+      </if>
+      <if test="classDate != null" >
+        classDate = #{classDate,jdbcType=DATE},
+      </if>
+      <if test="calculateAbsenceNo != null" >
+        calculateAbsenceNo = #{calculateAbsenceNo,jdbcType=BIT},
+      </if>
+      <if test="deleteNo != null" >
+        deleteNo = #{deleteNo,jdbcType=BIT},
+      </if>
+    </set>
+    where classPeriodId = #{classPeriodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.ClassPeriod" >
+    update classperiod
+    set userId = #{userId,jdbcType=BIGINT},
+      userName = #{userName,jdbcType=VARCHAR},
+      className = #{className,jdbcType=VARCHAR},
+      goToWorkTime = #{goToWorkTime,jdbcType=TIME},
+      timeFromWork = #{timeFromWork,jdbcType=TIME},
+      startChargeTime = #{startChargeTime,jdbcType=TIME},
+      endChargeTime = #{endChargeTime,jdbcType=TIME},
+      goToWorkChargeNo = #{goToWorkChargeNo,jdbcType=BIT},
+      timeFromWorkChargeNo = #{timeFromWorkChargeNo,jdbcType=BIT},
+      calculateLeftEarlyNo = #{calculateLeftEarlyNo,jdbcType=BIT},
+      classDate = #{classDate,jdbcType=DATE},
+      calculateAbsenceNo = #{calculateAbsenceNo,jdbcType=BIT},
+      deleteNo = #{deleteNo,jdbcType=BIT}
+    where classPeriodId = #{classPeriodId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByName" resultMap="BaseResultMap">
+  	SELECT * FROM classperiod
+  	<where>
+  		
+  		<if test="name!=null and name!=''">
+  			AND userName like "%"#{name}"%"
+  		</if>
+  	</where>
+  
+  </select>
+  
+  
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountByDate" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM classperiod
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and classDate between #{startDate}
+			and #{endDate}
+		</if>
+
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectClassByDate" resultMap="BaseResultMap">
+  	SELECT * FROM  classperiod  
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and classDate between #{startDate}
+			and #{endDate}
+		</if>
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  <!-- selectCountByCondition的SQL语句 -->
+  <select id="selectCountByUid" resultType="java.lang.Integer">
+  	SELECT COUNT(*) FROM classperiod
+  	<where>
+  		<if test="startDate !='' and endDate!=''">
+			and classDate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+       and  userId = #{uid,jdbcType=BIGINT}
+        </if>
+
+  	</where>
+  </select>
+  
+    <!-- selectByCondition的SQL语句 -->
+  <select id="selectMyClassByCondition" resultMap="BaseResultMap">
+  	SELECT * FROM classperiod
+  	<where>
+ 
+  		<if test="startDate !='' and endDate!=''">
+			and classDate between #{startDate}
+			and #{endDate}
+		</if>
+		<if test="uid != null" >
+         and  userId = #{uid,jdbcType=BIGINT}
+        </if>
+		
+  	</where>
+  		limit #{startRow},#{endRow}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

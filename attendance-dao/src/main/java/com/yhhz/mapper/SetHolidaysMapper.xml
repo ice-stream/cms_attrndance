@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.SetHolidaysMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.SetHolidays" >
+    <id column="holidaysId" property="holidaysId" jdbcType="INTEGER" />
+    <result column="holidayName" property="holidayName" jdbcType="VARCHAR" />
+    <result column="startDate" property="startDate" jdbcType="DATE" />
+    <result column="endDate" property="endDate" jdbcType="DATE" />
+    <result column="userPositionId" property="userPositionId" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    holidaysId, holidayName, startDate, endDate, userPositionId, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from setholidays
+    where holidaysId = #{holidaysId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from setholidays
+    where holidaysId = #{holidaysId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.SetHolidays" >
+    insert into setholidays (holidaysId, holidayName, startDate, 
+      endDate, userPositionId, remark
+      )
+    values (#{holidaysId,jdbcType=INTEGER}, #{holidayName,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, 
+      #{endDate,jdbcType=DATE}, #{userPositionId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.SetHolidays" >
+    insert into setholidays
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="holidaysId != null" >
+        holidaysId,
+      </if>
+      <if test="holidayName != null" >
+        holidayName,
+      </if>
+      <if test="startDate != null" >
+        startDate,
+      </if>
+      <if test="endDate != null" >
+        endDate,
+      </if>
+      <if test="userPositionId != null" >
+        userPositionId,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="holidaysId != null" >
+        #{holidaysId,jdbcType=INTEGER},
+      </if>
+      <if test="holidayName != null" >
+        #{holidayName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="userPositionId != null" >
+        #{userPositionId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.SetHolidays" >
+    update setholidays
+    <set >
+      <if test="holidayName != null" >
+        holidayName = #{holidayName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        startDate = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        endDate = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="userPositionId != null" >
+        userPositionId = #{userPositionId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where holidaysId = #{holidaysId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.SetHolidays" >
+    update setholidays
+    set holidayName = #{holidayName,jdbcType=VARCHAR},
+      startDate = #{startDate,jdbcType=DATE},
+      endDate = #{endDate,jdbcType=DATE},
+      userPositionId = #{userPositionId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where holidaysId = #{holidaysId,jdbcType=INTEGER}
+  </update>
+</mapper>

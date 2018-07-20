@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.CmsPermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.CmsPermission" >
+    <id column="P_Id" property="pId" jdbcType="BIGINT" />
+    <result column="percode" property="percode" jdbcType="VARCHAR" />
+    <result column="P_name" property="pName" jdbcType="VARCHAR" />
+    <result column="P_createDate" property="pCreatedate" jdbcType="DATE" />
+    <result column="P_modifyDate" property="pModifydate" jdbcType="DATE" />
+    <result column="Url" property="url" jdbcType="VARCHAR" />
+    <result column="P_isdelete" property="pIsdelete" jdbcType="INTEGER" />
+    <result column="P_parentId" property="pParentid" jdbcType="INTEGER" />
+    <result column="P_versions" property="pVersions" jdbcType="BIGINT" />
+    <result column="P_author" property="pAuthor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    P_Id, percode, P_name, P_createDate, P_modifyDate, Url, P_isdelete, P_parentId, P_versions, 
+    P_author
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_permission
+    where P_Id = #{pId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cms_permission
+    where P_Id = #{pId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.CmsPermission" >
+    insert into cms_permission (P_Id, percode, P_name, 
+      P_createDate, P_modifyDate, Url, 
+      P_isdelete, P_parentId, P_versions, 
+      P_author)
+    values (#{pId,jdbcType=BIGINT}, #{percode,jdbcType=VARCHAR}, #{pName,jdbcType=VARCHAR}, 
+      #{pCreatedate,jdbcType=DATE}, #{pModifydate,jdbcType=DATE}, #{url,jdbcType=VARCHAR}, 
+      #{pIsdelete,jdbcType=INTEGER}, #{pParentid,jdbcType=INTEGER}, #{pVersions,jdbcType=BIGINT}, 
+      #{pAuthor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.CmsPermission" >
+    insert into cms_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        P_Id,
+      </if>
+      <if test="percode != null" >
+        percode,
+      </if>
+      <if test="pName != null" >
+        P_name,
+      </if>
+      <if test="pCreatedate != null" >
+        P_createDate,
+      </if>
+      <if test="pModifydate != null" >
+        P_modifyDate,
+      </if>
+      <if test="url != null" >
+        Url,
+      </if>
+      <if test="pIsdelete != null" >
+        P_isdelete,
+      </if>
+      <if test="pParentid != null" >
+        P_parentId,
+      </if>
+      <if test="pVersions != null" >
+        P_versions,
+      </if>
+      <if test="pAuthor != null" >
+        P_author,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        #{pId,jdbcType=BIGINT},
+      </if>
+      <if test="percode != null" >
+        #{percode,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCreatedate != null" >
+        #{pCreatedate,jdbcType=DATE},
+      </if>
+      <if test="pModifydate != null" >
+        #{pModifydate,jdbcType=DATE},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pIsdelete != null" >
+        #{pIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="pParentid != null" >
+        #{pParentid,jdbcType=INTEGER},
+      </if>
+      <if test="pVersions != null" >
+        #{pVersions,jdbcType=BIGINT},
+      </if>
+      <if test="pAuthor != null" >
+        #{pAuthor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.CmsPermission" >
+    update cms_permission
+    <set >
+      <if test="percode != null" >
+        percode = #{percode,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null" >
+        P_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCreatedate != null" >
+        P_createDate = #{pCreatedate,jdbcType=DATE},
+      </if>
+      <if test="pModifydate != null" >
+        P_modifyDate = #{pModifydate,jdbcType=DATE},
+      </if>
+      <if test="url != null" >
+        Url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pIsdelete != null" >
+        P_isdelete = #{pIsdelete,jdbcType=INTEGER},
+      </if>
+      <if test="pParentid != null" >
+        P_parentId = #{pParentid,jdbcType=INTEGER},
+      </if>
+      <if test="pVersions != null" >
+        P_versions = #{pVersions,jdbcType=BIGINT},
+      </if>
+      <if test="pAuthor != null" >
+        P_author = #{pAuthor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where P_Id = #{pId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.CmsPermission" >
+    update cms_permission
+    set percode = #{percode,jdbcType=VARCHAR},
+      P_name = #{pName,jdbcType=VARCHAR},
+      P_createDate = #{pCreatedate,jdbcType=DATE},
+      P_modifyDate = #{pModifydate,jdbcType=DATE},
+      Url = #{url,jdbcType=VARCHAR},
+      P_isdelete = #{pIsdelete,jdbcType=INTEGER},
+      P_parentId = #{pParentid,jdbcType=INTEGER},
+      P_versions = #{pVersions,jdbcType=BIGINT},
+      P_author = #{pAuthor,jdbcType=VARCHAR}
+    where P_Id = #{pId,jdbcType=BIGINT}
+  </update>
+</mapper>

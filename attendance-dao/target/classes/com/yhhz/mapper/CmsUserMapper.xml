@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yhhz.mapper.CmsUserMapper" >
+  <resultMap id="BaseResultMap" type="com.yhhz.pojo.CmsUser" >
+    <id column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="u_name" property="uName" jdbcType="VARCHAR" />
+    <result column="u_username" property="uUsername" jdbcType="VARCHAR" />
+    <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
+    <result column="u_phone" property="uPhone" jdbcType="BIGINT" />
+    <result column="u_IdCord" property="uIdcord" jdbcType="VARCHAR" />
+    <result column="u_sex" property="uSex" jdbcType="VARCHAR" />
+    <result column="u_age" property="uAge" jdbcType="BIGINT" />
+    <result column="u_email" property="uEmail" jdbcType="VARCHAR" />
+    <result column="u_createDate" property="uCreatedate" jdbcType="DATE" />
+    <result column="u_modifyDate" property="uModifydate" jdbcType="DATE" />
+    <result column="u_state" property="uState" jdbcType="INTEGER" />
+    <result column="u_versions" property="uVersions" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, u_name, u_username, u_password, u_phone, u_IdCord, u_sex, u_age, u_email, u_createDate, 
+    u_modifyDate, u_state, u_versions
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_user
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cms_user
+    where uid = #{uid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yhhz.pojo.CmsUser" >
+    insert into cms_user (uid, u_name, u_username, 
+      u_password, u_phone, u_IdCord, 
+      u_sex, u_age, u_email, 
+      u_createDate, u_modifyDate, u_state, 
+      u_versions)
+    values (#{uid,jdbcType=BIGINT}, #{uName,jdbcType=VARCHAR}, #{uUsername,jdbcType=VARCHAR}, 
+      #{uPassword,jdbcType=VARCHAR}, #{uPhone,jdbcType=BIGINT}, #{uIdcord,jdbcType=VARCHAR}, 
+      #{uSex,jdbcType=VARCHAR}, #{uAge,jdbcType=BIGINT}, #{uEmail,jdbcType=VARCHAR}, 
+      #{uCreatedate,jdbcType=DATE}, #{uModifydate,jdbcType=DATE}, #{uState,jdbcType=INTEGER}, 
+      #{uVersions,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yhhz.pojo.CmsUser" >
+    insert into cms_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="uName != null" >
+        u_name,
+      </if>
+      <if test="uUsername != null" >
+        u_username,
+      </if>
+      <if test="uPassword != null" >
+        u_password,
+      </if>
+      <if test="uPhone != null" >
+        u_phone,
+      </if>
+      <if test="uIdcord != null" >
+        u_IdCord,
+      </if>
+      <if test="uSex != null" >
+        u_sex,
+      </if>
+      <if test="uAge != null" >
+        u_age,
+      </if>
+      <if test="uEmail != null" >
+        u_email,
+      </if>
+      <if test="uCreatedate != null" >
+        u_createDate,
+      </if>
+      <if test="uModifydate != null" >
+        u_modifyDate,
+      </if>
+      <if test="uState != null" >
+        u_state,
+      </if>
+      <if test="uVersions != null" >
+        u_versions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="uName != null" >
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uUsername != null" >
+        #{uUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null" >
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null" >
+        #{uPhone,jdbcType=BIGINT},
+      </if>
+      <if test="uIdcord != null" >
+        #{uIdcord,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null" >
+        #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null" >
+        #{uAge,jdbcType=BIGINT},
+      </if>
+      <if test="uEmail != null" >
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreatedate != null" >
+        #{uCreatedate,jdbcType=DATE},
+      </if>
+      <if test="uModifydate != null" >
+        #{uModifydate,jdbcType=DATE},
+      </if>
+      <if test="uState != null" >
+        #{uState,jdbcType=INTEGER},
+      </if>
+      <if test="uVersions != null" >
+        #{uVersions,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yhhz.pojo.CmsUser" >
+    update cms_user
+    <set >
+      <if test="uName != null" >
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uUsername != null" >
+        u_username = #{uUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null" >
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null" >
+        u_phone = #{uPhone,jdbcType=BIGINT},
+      </if>
+      <if test="uIdcord != null" >
+        u_IdCord = #{uIdcord,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null" >
+        u_sex = #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null" >
+        u_age = #{uAge,jdbcType=BIGINT},
+      </if>
+      <if test="uEmail != null" >
+        u_email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreatedate != null" >
+        u_createDate = #{uCreatedate,jdbcType=DATE},
+      </if>
+      <if test="uModifydate != null" >
+        u_modifyDate = #{uModifydate,jdbcType=DATE},
+      </if>
+      <if test="uState != null" >
+        u_state = #{uState,jdbcType=INTEGER},
+      </if>
+      <if test="uVersions != null" >
+        u_versions = #{uVersions,jdbcType=BIGINT},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yhhz.pojo.CmsUser" >
+    update cms_user
+    set u_name = #{uName,jdbcType=VARCHAR},
+      u_username = #{uUsername,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_phone = #{uPhone,jdbcType=BIGINT},
+      u_IdCord = #{uIdcord,jdbcType=VARCHAR},
+      u_sex = #{uSex,jdbcType=VARCHAR},
+      u_age = #{uAge,jdbcType=BIGINT},
+      u_email = #{uEmail,jdbcType=VARCHAR},
+      u_createDate = #{uCreatedate,jdbcType=DATE},
+      u_modifyDate = #{uModifydate,jdbcType=DATE},
+      u_state = #{uState,jdbcType=INTEGER},
+      u_versions = #{uVersions,jdbcType=BIGINT}
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  
+  
+    <!--   根据用户名密码查找用户 -->
+     <select id="selectUserByUserName" resultType="com.yhhz.pojo.CmsUser">
+		 SELECT 
+		 *
+	    FROM cms_user
+        WHERE cms_user.u_username=#{username} AND cms_user.u_password=#{password}
+        ;
+		  
+	</select>  
+
+  <!--   根据用户名密码查找用户 -->
+     <select id="selectUserByName" resultType="com.yhhz.pojo.CmsUser">
+		 SELECT * FROM cms_user
+          WHERE cms_user.u_username=#{userName}
+        ;
+		  
+	</select>  
+  
+  
+  <!-- 根据userid查询权限资源字符串 -->
+  <select id="findPermissionListByUserId" parameterType="java.lang.Long" resultType="com.yhhz.pojo.CmsPermission">
+	SELECT
+		*
+	FROM
+		cms_permission
+	WHERE
+		P_id 
+	IN
+		(
+			SELECT 
+				P_id 
+			FROM 
+				cms_role_permission 
+			WHERE 
+				R_Id  
+			IN 
+				(SELECT R_Id FROM cms_user_role WHERE U_id = #{userid})
+		)
+  </select>
+  
+  
+  <!--   根据用户名密码查找用户 -->
+     <select id="queryUserByName" resultMap="BaseResultMap">
+		 SELECT * FROM cms_user
+          WHERE cms_user.u_username=#{username}
+        ;
+		  
+	</select>  
+  
+  
+  
+  
+  
+</mapper>
